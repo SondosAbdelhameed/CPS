@@ -45,4 +45,10 @@
     <string name="declaration_content">I hereby declare that all information provided in this application form is true to the best of my knowledge.</string>
     <string name="next">Next</string>
     <string name="notification">Notification</string>
+    <string name="stu_medical">Student Medical Information</string>
+    <string name="stu_relation">Relation to Student</string>
+    <string name="father_name">Father / Guardian Name</string>
+    <string name="father_phone">Phone Number</string>
+    <string name="occupation">Occupation</string>
+    <string name="mother_name">Mother Name</string>
 </resources>

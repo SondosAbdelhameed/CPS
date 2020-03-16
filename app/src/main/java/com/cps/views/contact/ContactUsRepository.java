@@ -16,9 +16,6 @@ import retrofit2.Response;
 public class ContactUsRepository {
 
     public MutableLiveData<Integer> requestdata(SendContact contact) {
-        Log.d("Test","Contact test 1");
-
-        Log.d("Test","Contact test 2  "+ contact.getSubject());
 
         final MutableLiveData<Integer> mutableLiveData = new MutableLiveData<>();
 
@@ -31,11 +28,7 @@ public class ContactUsRepository {
                 if (response.isSuccessful() && response.body()!=null ) {
                     //mutableLiveData.setValue(response.body().getData().getEventsNews());
                     mutableLiveData.setValue(response.body().getStatus().getCode());
-                    Log.d("Test", "Contact   "+response.code());
                 }else {
-                    Log.d("Test", "Contact  m "+response.message());
-                    Log.d("Test", "Contact  c "+response.code());
-                    Log.d("Test", "Contact  r "+response.toString());
 
                     mutableLiveData.setValue(response.code());
                 }

@@ -16,7 +16,7 @@
         <activity android:name=".views.Notification"></activity>
         <activity android:name=".views.EventNewsDetails" />
         <activity android:name=".views.gallery.Gallery" />
-        <activity android:name=".views.Admission" />
+        <activity android:name=".views.admission.Admission" />
         <activity
             android:name=".views.contact.ContactUs"
             android:windowSoftInputMode="adjustPan" />

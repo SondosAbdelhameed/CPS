@@ -2,6 +2,7 @@ package com.cps.interfaces;
 
 
 import com.cps.models.requests.SendAdmission;
+import com.cps.models.requests.SendAdmissionMedia;
 import com.cps.models.requests.SendContact;
 import com.cps.models.responses.JsonResponse;
 
@@ -32,7 +33,7 @@ public interface ApiInterface {
     Call<JsonResponse> admission_data(@Body SendAdmission admission);
 
     @POST(SERVER_ADMISSION_MEDIA)
-    Call<JsonResponse> admission_media(@Body SendAdmission admission);
+    Call<JsonResponse> admission_media(@Body SendAdmissionMedia admission);
 
     @POST(SERVER_GALLERY)
     Call<JsonResponse> gallery();

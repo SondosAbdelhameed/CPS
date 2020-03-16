@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cps.models.responses.EventsNewsItem;
-import com.cps.views.Admission;
+import com.cps.views.admission.Admission;
 import com.cps.views.Notification;
 import com.cps.views.contact.ContactUs;
 import com.cps.views.EventNewsDetails;
@@ -38,7 +38,7 @@ public class HomeViewModel extends ViewModel {
 
     public void goToAdmission(View v){
         Context context = v.getContext();
-       // context.startActivity(new Intent(context, Admission.class));
+        context.startActivity(new Intent(context, Admission.class));
     }
 
     public void goToGallery(View v){

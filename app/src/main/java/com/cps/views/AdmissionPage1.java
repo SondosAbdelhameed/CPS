@@ -17,22 +17,25 @@ import com.cps.models.requests.SendAdmission;
 public class AdmissionPage1 extends Fragment {
 
     FragmentAdmissionP1Binding binding;
+    SendAdmission admission;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admission_p1, container, false);
+        admission = (SendAdmission) getArguments().getSerializable("admission");
+        binding.setAdmission(admission);
         return binding.getRoot();
     }
 
     public static AdmissionPage1 newInstance(SendAdmission admission) {
 
         AdmissionPage1 f = new AdmissionPage1();
-        /*Bundle b = new Bundle();
-        b.putString("msg", text);
+        Bundle b = new Bundle();
+        b.putSerializable("admission", admission);
 
-        f.setArguments(b);*/
+        f.setArguments(b);
 
         return f;
     }

@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.Admission"
+        tools:context=".views.admission.Admission"
         android:background="@mipmap/background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,63 +13,24 @@
             android:layout_height="match_parent"
             android:background="@color/black_alpha">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/glh"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_bias="0.0">
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/glv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent=".10"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_home"
                     style="@style/TextWBBBS"
                     android:text="@string/admission"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/glh"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/glv1"
-                    app:layout_constraintStart_toEndOf="@+id/glv"
-                    app:layout_constraintVertical_bias="0.3" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/glv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent=".8"/>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_notification"
-                    android:layout_centerInParent="true"
-                    android:padding="7dp"
-                    android:background="@drawable/sh_circle_green_light"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/glv1"
-                    app:layout_constraintVertical_bias="0.3"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintVertical_bias="0.3" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/glh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.15" />
+                app:layout_constraintGuide_percent="0.13" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -87,54 +48,53 @@
                     android:layout_margin="10dp"
                     app:cardCornerRadius="20dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-                            android:id="@+id/tl_vp_dots"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-
-                            app:dampingRatio="0.5"
-                            app:dotsColor="@color/base2"
-                            app:dotsStrokeColor="@color/base2"
-                            app:dotsCornerRadius="2dp"
-                            app:dotsSize="12dp"
-                            app:dotsSpacing="3dp"
-                            app:dotsStrokeWidth="2dp"
-                            app:stiffness="300"/>
-
-
-                        <androidx.viewpager2.widget.ViewPager2
+                     <!--   <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/vp_admission"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1" />
+-->
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fillViewport="true">
 
-                        <!--                        <ScrollView-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="match_parent">-->
-                        <!--                            <LinearLayout-->
-                        <!--                                android:orientation="vertical"-->
-                        <!--                                android:layout_width="match_parent"-->
-                        <!--                                android:layout_height="match_parent">-->
-                        <!--                                <com.cps.helpers.view_custom.NonSwipViewPager-->
-                        <!--                                    android:id="@+id/vp_admission"-->
-                        <!--                                    android:layout_width="match_parent"-->
-                        <!--                                    android:layout_height="wrap_content" />-->
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                        <!--                                <Button-->
-                        <!--                                    android:id="@+id/btn_next"-->
-                        <!--                                    android:layout_width="wrap_content"-->
-                        <!--                                    android:layout_height="wrap_content"-->
-                        <!--                                    android:layout_gravity="center_horizontal"-->
-                        <!--                                    android:text="@string/next" />-->
-                        <!--                            </LinearLayout>-->
-                        <!--                        </ScrollView>-->
-                    </LinearLayout>
+                                <androidx.viewpager2.widget.ViewPager2
+                                    android:id="@+id/vp_admission"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10dp"/>
+
+                                <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                                    android:id="@+id/tl_vp_dots"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+
+                                    app:dampingRatio="0.5"
+                                    app:dotsColor="@color/base2"
+                                    app:dotsCornerRadius="2dp"
+                                    app:dotsSize="12dp"
+                                    app:dotsSpacing="3dp"
+                                    app:dotsStrokeColor="@color/base2"
+                                    app:dotsStrokeWidth="2dp"
+                                    app:stiffness="300" />
+                                <Button
+                                    android:id="@+id/btn_next"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="@string/next"
+                                    android:layout_marginBottom="10dp"/>
+                            </LinearLayout>
+
+                        </ScrollView>
+
                 </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
