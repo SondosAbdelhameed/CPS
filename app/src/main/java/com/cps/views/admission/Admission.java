@@ -21,18 +21,28 @@ import com.cps.views.AdmissionPage2;
 import com.cps.views.AdmissionPage3;
 import com.cps.views.AdmissionPage4;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 
 public class Admission extends AppCompatActivity {
 
     ActivityAdmissionBinding binding;
-    SendAdmission admission;
+    SendAdmission admission = new SendAdmission();
     Button next;
+
+    List<Fragment> fragmentList = Arrays.asList(
+            AdmissionPage1.newInstance(admission),
+            AdmissionPage2.newInstance(admission),
+            AdmissionPage3.newInstance(admission),
+            AdmissionPage4.newInstance(admission)
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_admission);
-        admission = new SendAdmission();
         next = binding.btnNext;
         binding.vpAdmission.setAdapter(new MyPagerAdapter(this));
         // disable user swipe
@@ -64,10 +74,31 @@ public class Admission extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(binding.vpAdmission.getCurrentItem() < 3)
-                    binding.vpAdmission.setCurrentItem(binding.vpAdmission.getCurrentItem()+1);
-                else if(binding.vpAdmission.getCurrentItem() == 3)
-                    Toast.makeText(Admission.this, "Last Page   "+admission.getStuNationalId(), Toast.LENGTH_SHORT).show();
+                Fragment fragment = fragmentList.get(binding.vpAdmission.getCurrentItem());
+                if (fragment instanceof AdmissionPage1) {
+                    if (((AdmissionPage1) fragment).isValidate()) {
+                        binding.scrollView.scrollTo(0, 0);
+                        binding.vpAdmission.setCurrentItem(binding.vpAdmission.getCurrentItem() + 1, true);
+                    }
+                } else if (fragment instanceof AdmissionPage2) {
+                    if (((AdmissionPage2) fragment).isValidate()) {
+                        binding.scrollView.scrollTo(0, 0);
+                        binding.vpAdmission.setCurrentItem(binding.vpAdmission.getCurrentItem() + 1, true);
+                    }
+                } else if (fragment instanceof AdmissionPage3) {
+                    if (((AdmissionPage3) fragment).isValidate()) {
+                        binding.scrollView.scrollTo(0, 0);
+                        binding.vpAdmission.setCurrentItem(binding.vpAdmission.getCurrentItem() + 1, true);
+                    }
+                } else if (fragment instanceof AdmissionPage4) {
+                    if (((AdmissionPage4) fragment).isValidate()) {
+                        /**
+                         *
+                         * finish admission
+                         * */
+                    }
+                }
+
             }
         });
 
@@ -82,19 +113,19 @@ public class Admission extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            switch (position) {
-
-                case 0: return AdmissionPage1.newInstance(admission);
-                case 1: return AdmissionPage2.newInstance(admission);
-                case 2: return AdmissionPage3.newInstance(admission);
-                case 3: return AdmissionPage4.newInstance(admission);
-                default: return AdmissionPage1.newInstance(admission);
-            }
+            return fragmentList.get(position);
+//            switch (position) {
+//
+//                case 1: return AdmissionPage2.newInstance(admission);
+//                case 2: return AdmissionPage3.newInstance(admission);
+//                case 3: return AdmissionPage4.newInstance(admission);
+//                default: return AdmissionPage1.newInstance(admission);
+//            }
         }
 
         @Override
         public int getItemCount() {
-            return 4;
+            return fragmentList.size();
         }
     }
 }

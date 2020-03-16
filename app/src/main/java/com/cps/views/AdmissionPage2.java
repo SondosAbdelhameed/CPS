@@ -42,4 +42,13 @@ public class AdmissionPage2 extends Fragment {
 
         return f;
     }
+
+    public boolean isValidate() {
+
+
+        /**
+         * if return false show the error message for each fragment
+         * */
+        return true;
+    }
 }

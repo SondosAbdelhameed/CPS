@@ -41,4 +41,13 @@ public class AdmissionPage4 extends Fragment {
         f.setArguments(b);
         return f;
     }
+
+    public boolean isValidate() {
+
+
+        /**
+         * if return false show the error message for each fragment
+         * */
+        return false;
+    }
 }
