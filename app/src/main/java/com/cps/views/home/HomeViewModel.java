@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cps.models.responses.EventsNewsItem;
@@ -17,18 +18,22 @@ import com.cps.views.gallery.Gallery;
 
 public class HomeViewModel extends ViewModel {
 
-    HomeFragmentRepository repository;
 
-    public HomeViewModel() {
-        repository = new HomeFragmentRepository();
+    final MutableLiveData<EventsNewsItem> newsLiveData = new MutableLiveData<>();
+    final MutableLiveData<EventsNewsItem> eventLiveData = new MutableLiveData<>();
+
+    /**
+     * If you need to separate event error from news error create new live data
+     */
+    final MutableLiveData<Throwable> errorLiveData = new MutableLiveData<>();
+
+
+    void request_news(/*data to api*/) {
+        HomeFragmentRepository.requestNews(2, newsLiveData, errorLiveData);
     }
 
-    public LiveData<EventsNewsItem> request_news(/*data to api*/){
-        return repository.requestnews(2);
-    }
-
-    public LiveData<EventsNewsItem> request_event(/*data to api*/){
-        return repository.requestnews(1);
+    void request_event(/*data to api*/) {
+        HomeFragmentRepository.requestNews(1, eventLiveData, errorLiveData);
     }
 
     public void goToContact(View v){

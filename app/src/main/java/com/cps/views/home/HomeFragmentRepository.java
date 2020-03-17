@@ -16,8 +16,8 @@ import retrofit2.Response;
 
 public class HomeFragmentRepository {
 
-    public MutableLiveData<EventsNewsItem> requestnews(int type) {
-        final MutableLiveData<EventsNewsItem> mutableLiveData = new MutableLiveData<>();
+
+    public static void requestNews(int type, MutableLiveData<EventsNewsItem> liveData, MutableLiveData<Throwable> errorLiveData) {
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<JsonResponse> responseCall = apiInterface.event_news(type);
@@ -25,17 +25,17 @@ public class HomeFragmentRepository {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if (response.isSuccessful() && response.body()!=null ) {
-                    mutableLiveData.setValue(response.body().getData().getEventsNews().get(0));
+                    liveData.setValue(response.body().getData().getEventsNews().get(0));
                 }
             }
             @Override
             public void onFailure(Call<JsonResponse> call, Throwable t) {
                 Log.e("Test", "getProdList onFailure" + t.toString());
+                errorLiveData.setValue(t);
 
             }
         });
 
 
-        return mutableLiveData;
     }
 }

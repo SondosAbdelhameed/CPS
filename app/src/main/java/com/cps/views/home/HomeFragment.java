@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.cps.R;
 import com.cps.databinding.FragmentHomeBinding;
 import com.cps.models.responses.EventsNewsItem;
+import com.google.android.material.snackbar.Snackbar;
 
 public class HomeFragment extends Fragment {
 
@@ -41,32 +42,28 @@ public class HomeFragment extends Fragment {
 
         // final TextView textView = root.findViewById(R.id.text_home);
 
-        homeViewModel.request_news().observe(this, new Observer<EventsNewsItem>() {
-            @Override
-            public void onChanged(@Nullable EventsNewsItem item) {
-                dialog.dismiss();
-                if (item != null){
-                    binding.setNews(item);
-                }else {
-                    Toast.makeText(getContext(), "false", Toast.LENGTH_SHORT).show();
 
-                }
-            }
+        homeViewModel.newsLiveData.observe(getViewLifecycleOwner(), item -> {
+            if (item == null) return;
+            binding.setNews(item);
+            homeViewModel.request_event();
+
         });
 
-        dialog.show();
 
-        homeViewModel.request_event().observe(this, new Observer<EventsNewsItem>() {
-            @Override
-            public void onChanged(@Nullable EventsNewsItem item) {
+        homeViewModel.eventLiveData.observe(getViewLifecycleOwner(), item -> {
+            if (item == null) return;
                 dialog.dismiss();
-                if (item != null){
-                    binding.setEvent(item);
-                }else {
-                    Toast.makeText(getContext(), "false", Toast.LENGTH_SHORT).show();
-                }
-            }
+            binding.setEvent(item);
         });
+
+        homeViewModel.errorLiveData.observe(getViewLifecycleOwner(), throwable -> {
+            if (throwable == null) return;
+            dialog.dismiss();
+            Snackbar.make(binding.getRoot(), "error : " + throwable.getLocalizedMessage(), Snackbar.LENGTH_LONG).show();
+        });
+
+        homeViewModel.request_news();
 
         return binding.getRoot();
     }
