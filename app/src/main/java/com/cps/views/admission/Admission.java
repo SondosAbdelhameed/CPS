@@ -11,18 +11,13 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.cps.R;
 import com.cps.databinding.ActivityAdmissionBinding;
 import com.cps.models.requests.SendAdmission;
-import com.cps.views.AdmissionPage1;
-import com.cps.views.AdmissionPage2;
-import com.cps.views.AdmissionPage3;
-import com.cps.views.AdmissionPage4;
+import com.cps.models.requests.SendAdmissionMedia;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -30,13 +25,14 @@ public class Admission extends AppCompatActivity {
 
     ActivityAdmissionBinding binding;
     SendAdmission admission = new SendAdmission();
+    SendAdmissionMedia admissionMedia = new SendAdmissionMedia();
     Button next;
 
     List<Fragment> fragmentList = Arrays.asList(
             AdmissionPage1.newInstance(admission),
             AdmissionPage2.newInstance(admission),
             AdmissionPage3.newInstance(admission),
-            AdmissionPage4.newInstance(admission)
+            AdmissionPage4.newInstance(admission , admissionMedia)
     );
 
     @Override

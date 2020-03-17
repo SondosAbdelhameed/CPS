@@ -1,4 +1,4 @@
-package com.cps.views;
+package com.cps.views.admission;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -44,10 +44,28 @@ public class AdmissionPage3 extends Fragment {
 
     public boolean isValidate() {
 
+        boolean check = true;
+       /* if(admission.getStuEmergName() == null || admission.getStuEmergName().isEmpty()) {
+            check = false;
+            binding.etStuEmergencyName.setError(getString(R.string.error_empty_data));
+        }
+        if(admission.getStuEmergRelation() == null || admission.getStuEmergRelation().isEmpty()) {
+            check = false;
+            binding.etStuEmergencyRelation.setError(getString(R.string.error_empty_data));
+        }
+        if(admission.getStuEmergPhone() == null || admission.getStuEmergPhone().isEmpty()) {
+            check = false;
+            binding.etStuEmergencyPhone.setError(getString(R.string.error_empty_data));
+        }
+        if (!binding.cbDeclaration.isChecked()){
+            check = false;
+            binding.tvDeclaration.setError("You must check the Declaration");
+        }
 
+*/
         /**
          * if return false show the error message for each fragment
          * */
-        return true;
+        return check;
     }
 }

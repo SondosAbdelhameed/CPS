@@ -67,7 +67,8 @@ public class ContactUs extends AppCompatActivity {
         if(contact.getEmail() == "" || contact.getEmail() == null) {
             c = false;
             binding.etEmail.setError(getString(R.string.error_empty_data));
-        }else if(Patterns.EMAIL_ADDRESS.matcher(contact.getEmail()).matches()){
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(contact.getEmail()).matches()){
+            c = false;
             binding.etEmail.setError(getString(R.string.error_email_format));
         }
         if(contact.getMessage() == "" || contact.getMessage() == null){

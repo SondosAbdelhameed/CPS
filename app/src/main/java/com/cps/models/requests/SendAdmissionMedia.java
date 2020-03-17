@@ -2,7 +2,9 @@ package com.cps.models.requests;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SendAdmissionMedia{
+import java.io.Serializable;
+
+public class SendAdmissionMedia implements Serializable {
 
 	@SerializedName("stu_fa_qual_photo")
 	private String stuFaQualPhoto;
