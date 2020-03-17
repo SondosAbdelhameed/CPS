@@ -33,12 +33,9 @@ public class AdmissionPage1 extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admission_p1, container, false);
         admission = (SendAdmission) getArguments().getSerializable("admission");
         binding.setAdmission(admission);
-        binding.tvBirthDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog.OnDateSetListener date = calendar();
-                openCalendar1(date);
-            }
+        binding.tvBirthDate.setOnClickListener(v -> {
+            DatePickerDialog.OnDateSetListener date = calendar();
+            openCalendar1(date);
         });
         return binding.getRoot();
     }
